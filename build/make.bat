@@ -1,2 +1,2 @@
-g++ -o main ../src/main.cpp
+g++ -o main ../src/main.cpp ../lib/game.cpp ../lib/tttlibrary.cpp
 main

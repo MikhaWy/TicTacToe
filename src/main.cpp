@@ -1,6 +1,9 @@
 #include <iostream>
+#include "../includes/tictactoe.h"
+#include "../includes/tttlibrary.h"
+#include "../includes/game.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    
     return 0;
 }
