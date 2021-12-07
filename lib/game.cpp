@@ -49,7 +49,9 @@ void Game::Play(const int& mode) {
     int totalMove = 0;
 
     if (mode == SINGLE_PLAYER) {
-        bool player = 1;
+        // Randomly choose the starting player
+		// Even number will be player's turn, odd will be A.I.'s turn
+		bool player = (rand() % 2 + 1) % 2 == 0;
         
         TTTLibrary::PrintBoard(tictactoe);
 		std::cout << "First player will be: " << (player ? "You" : "A.I.") << std::endl;
