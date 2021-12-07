@@ -36,3 +36,10 @@ void Game::Run() {
 	std::cout << "Thank you for playing..." << std::endl;
 	exit(EXIT_SUCCESS);
 }
+
+void Game::PrintCommand() {
+	std::cout << "Select playing mode:" << std::endl;
+	std::cout << "[1] Singleplayer vs A.I." << std::endl;
+	std::cout << "[2] Multiplayer" << std::endl;
+	std::cout << "[3] Exit" << std::endl;
+}
