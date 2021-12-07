@@ -34,5 +34,5 @@ private:
 	//			board and return the most optimal for the current player
 	static int MiniMax(tictactoe_t& position, const int& depth, const bool& maximizingPlayer);
 };
-//1
+//5
 #endif
