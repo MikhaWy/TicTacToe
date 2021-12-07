@@ -32,4 +32,7 @@ void Game::Run() {
 			std::cout << "Invalid command! Try again..." << std::endl << std::endl;
 		}
     }
+    
+	std::cout << "Thank you for playing..." << std::endl;
+	exit(EXIT_SUCCESS);
 }
