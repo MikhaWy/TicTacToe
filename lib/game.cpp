@@ -49,18 +49,48 @@ void Game::Play(const int& mode) {
     int totalMove = 0;
 
     if (mode == SINGLE_PLAYER) {
-        // Loop with user and AI
+        bool player = 1;
+        
+        TTTLibrary::PrintBoard(tictactoe);
+		std::cout << "First player will be: " << (player ? "You" : "A.I.") << std::endl;
+
+		std::string move;
+		while (!tictactoe.gameEnd) {
+			// Currently it's player's turn
+			if (player) {
+				std::cout << "Select location (e.g. A3): ";
+				std::getline(std::cin, move);
+
+				const char* move_c = const_cast<char*>(move.c_str());
+				if (TTTLibrary::isLegalMove(tictactoe, move_c)) {
+					TTTLibrary::UpdateBoard(tictactoe, move_c);
+					TTTLibrary::PrintBoard(tictactoe);
+
+					player = !player;
+					tictactoe.turn = !tictactoe.turn;
+					tictactoe.gameStatus = TTTLibrary::EvaluateBoard(tictactoe);
+					totalMove++;
+				}
+				else {
+					std::cout << "Illegal move! Try again..." << std::endl;
+					continue;
+				}
+			}
+            else {
+                //AI move
+            }
+        }
     }
     else if (mode == MULTI_PLAYER) {
         // Loop with 2 players
     }
 
     if (tictactoe.gameStatus == 0)
-        std::cout << "Tie" << std::endl;
-    else if (tictactoe.gameStatus < 0)
-		std::cout << "Winner: Player O" << std::endl;
+		std::cout << "GAME END: Tie!..." << std::endl;
+	else if (tictactoe.gameStatus < 0)
+		std::cout << "GAME END: Winner: Player O!" << std::endl;
 	else if (tictactoe.gameStatus > 0)
-		std::cout << "Winner: Player X" << std::endl;
+		std::cout << "GAME END: Winner: Player X!" << std::endl;
 	else
 		std::cout << "ERROR: Game status invalid!" << std::endl;
 }
