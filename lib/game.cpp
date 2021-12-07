@@ -43,3 +43,24 @@ void Game::PrintCommand() {
 	std::cout << "[2] Multiplayer" << std::endl;
 	std::cout << "[3] Exit" << std::endl;
 }
+
+void Game::Play(const int& mode) {
+    tictactoe_t tictactoe;
+    int totalMove = 0;
+
+    if (mode == SINGLE_PLAYER) {
+        // Loop with user and AI
+    }
+    else if (mode == MULTI_PLAYER) {
+        // Loop with 2 players
+    }
+
+    if (tictactoe.gameStatus == 0)
+        std::cout << "Tie" << std::endl;
+    else if (tictactoe.gameStatus < 0)
+		std::cout << "Winner: Player O" << std::endl;
+	else if (tictactoe.gameStatus > 0)
+		std::cout << "Winner: Player X" << std::endl;
+	else
+		std::cout << "ERROR: Game status invalid!" << std::endl;
+}
