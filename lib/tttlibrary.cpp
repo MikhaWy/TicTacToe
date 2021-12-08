@@ -119,3 +119,95 @@ int TTTLibrary::EvaluateBoard(tictactoe_t& board) {
 		board.gameEnd = true;
 	return 0;
 }
+
+char* TTTLibrary::BestMove(tictactoe_t position) {
+	int minMaxEval = position.turn ? INT_MIN : INT_MAX;
+	char* bestMove = new char[3];
+
+	// Loop through all children in current position
+	for (int i = 0; i < BOARD_SIZE; i++)
+		for (int j = 0; j < BOARD_SIZE; j++) {
+			if (position.board[i][j] == ' ') {
+				// Make the current move
+				position.board[i][j] = position.turn ? 'X' : 'O';
+
+				// Evaluate the move with minimax
+				int eval = TTTLibrary::MiniMax(position, 0, !position.turn);
+
+				// Reverse to original position
+				position.board[i][j] = ' ';
+				position.gameEnd = false;
+
+				// Get the maximum evaluation if current turn is 'X'
+				if (position.turn) {
+					if (eval > minMaxEval) {
+						bestMove[0] = (char)(j + 'A');
+						bestMove[1] = (char)(i + '1');
+
+						minMaxEval = eval;
+					}
+				}
+				// Get the minimum evaluation if current turn is 'O'
+				else {
+					if (eval < minMaxEval) {
+						bestMove[0] = (char)(j + 'A');
+						bestMove[1] = (char)(i + '1');
+
+						minMaxEval = eval;
+					}
+				}
+			}
+		}
+	bestMove[2] = '\0';
+
+	return bestMove;
+}
+
+int TTTLibrary::MiniMax(tictactoe_t& position, const int& depth, const bool& maximizingPlayer) {
+	int boardCost = TTTLibrary::EvaluateBoard(position);
+	if (depth == SEARCH_DEPTH || position.gameEnd)
+		return boardCost;
+
+	if (maximizingPlayer) {
+		int maxEval = INT_MIN;
+
+		// For all possible move from current position, loop through the child
+		for (int i = 0; i < BOARD_SIZE; i++)
+			for (int j = 0; j < BOARD_SIZE; j++) {
+				if (position.board[i][j] == ' ') {
+					// Populate location
+					position.board[i][j] = 'X';
+
+					// Get the maximum evaluation
+					maxEval = std::max(maxEval, TTTLibrary::MiniMax(position, depth + 1, !maximizingPlayer));
+
+					// Unfill the location
+					position.board[i][j] = ' ';
+					position.gameEnd = false;
+				}
+			}
+
+		return maxEval;
+	}
+	else {
+		int minEval = INT_MAX;
+
+		// For all possible move from current position, loop through the child
+		for (int i = 0; i < BOARD_SIZE; i++)
+			for (int j = 0; j < BOARD_SIZE; j++) {
+				if (position.board[i][j] == ' ') {
+					// Populate location
+					position.board[i][j] = 'O';
+
+					// Get the minimum evaluation
+					minEval = std::min(minEval, TTTLibrary::MiniMax(position, depth + 1, !maximizingPlayer));
+
+					// Unfill the location
+					position.board[i][j] = ' ';
+					position.gameEnd = false;
+				}
+			}
+
+		return minEval;
+	}
+}
