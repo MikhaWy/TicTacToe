@@ -1,8 +1,8 @@
 # TicTacToe  
 by Edrick, **Mikha**, Roger  
-COMP2424-A Data Structures & Algorithms
-Mr. Muhamad Rausyan Fikri
-Date of Submission: 07 December, 2021
+COMP2424-A Data Structures & Algorithms  
+Mr. Muhamad Rausyan Fikri  
+Date of Submission: 07 December, 2021  
 
 ## Project Overview
 The tic tac toe game is a famous simple game that is playable by two opposing players, one represents the character 'X' while the other 'O'. With modern computing, players can now play the game against an “artificial intelligence”. The first iteration of the A.I. uses random slot selection and this makes the game “not challenging”, this gave birth to an algorithm called the minimax algorithm.  
