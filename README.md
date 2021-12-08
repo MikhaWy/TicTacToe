@@ -9,7 +9,7 @@ The tic tac toe game is a famous simple game that is playable by two opposing pl
 The minimax algorithm is a backtracking algorithm that optimizes the best next move for a player to take. Minimax only works for games with two players as each player will act as a minimizing player and a maximizing player. With tic tac toe, where there are only two players, minimax can be implemented for the computer to go against the opposing player. During the A.I.’s turn, minimax algorithm will generate and evaluate all possible move up to the depth given or when the algorithm reaches a solution that require less steps. These possible move generated can be visualized and be travelled in a form of a tree data structure.
 
 ## Project Information
-GitHub Repository: https://github.com/MikhaWy/TicTacToe.git
+GitHub Repository: https://github.com/MikhaWy/TicTacToe.git  
 Video Demo and Explanation: https://drive.google.com/file/d/1JaRZOaVVsdhN8B03KVP_WIO_XSqdvsf8/view?usp=sharing
 
 ## Clone Project
