@@ -78,9 +78,25 @@ void Game::Play(const int& mode) {
 					continue;
 				}
 			}
-            else {
-                //AI move
-            }
+            // A.I. will call minimax algorithm to select best move
+			else {
+				char* move_c = TTTLibrary::BestMove(tictactoe);
+				TTTLibrary::UpdateBoard(tictactoe, move_c);
+
+				std::cout << "A.I. selected location: " << move_c << std::endl;
+				TTTLibrary::PrintBoard(tictactoe);
+
+				player = !player;
+				tictactoe.turn = !tictactoe.turn;
+				tictactoe.gameStatus = TTTLibrary::EvaluateBoard(tictactoe);
+				totalMove++;
+
+				delete[] move_c;
+			}
+
+			// Stop the current round if totalMove is more than 9
+			if (totalMove == BOARD_SIZE * BOARD_SIZE || tictactoe.gameStatus != 0)
+				tictactoe.gameEnd = true;
         }
     }
     else if (mode == MULTI_PLAYER) {
